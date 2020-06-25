@@ -45,6 +45,26 @@ app.post("/api/submissions", async (req, res) => {
   }
 });
 
+app.post("/api/login", (req, res) => {
+  if (req.body.username !== process.env.USER_LOGIN) {
+    return res
+      .status(400)
+      .send(
+        "Username or password incorrect. Please message the channel for help."
+      );
+  }
+
+  if (req.body.password !== process.env.USER_PASSWORD) {
+    return res
+      .status(400)
+      .send(
+        "Username or password incorrect. Please message the channel for help."
+      );
+  }
+
+  res.status(200).send("Logged In");
+});
+
 app.listen(port, () => {
   console.log("Listening on " + port);
 });
